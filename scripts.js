@@ -5,6 +5,7 @@ let table = document.querySelector('.table');
 
 let workers = [];
 
+// событие изменения select - не имеет отношения к классу, поэтому он тут
 selectField.addEventListener('change', (e) => {
     childrensFields.forEach(item => {
         if(item.classList.contains(e.target.value)){
@@ -15,18 +16,31 @@ selectField.addEventListener('change', (e) => {
     })
 })
 
+//событие отправки формы
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    let data = new FormData(form);
+    let data = new FormData(form);  //забираем данные формы
     let body = {};
-    data.forEach((item, index) => body[index] = item);
+    data.forEach((item, index) => body[index] = item);//пишем данные в объект
     workers.push(Worker.createElement(body.profession, body));
-    console.log(workers)
     form.reset();
     childrensFields.forEach(item => item.classList.add('d-none'))
     Worker.setToStorage();
     Worker.render();
 })
+//реализация паттерна "Фабрика" - решил не применять тут, по моему излишне
+class WorkerFactory{
+    createWorker(name, data){
+        name = name.toLowerCase();
+        if(name === 'locksmith'){
+            return new Locksmith(data);
+        } else if(name === 'driver'){
+            return new Driver(data);
+        } else {
+            return null;
+        }
+    }
+}
 
 class Worker{
     constructor({name, surname, phone, age}) {
@@ -54,7 +68,7 @@ class Worker{
         let arr = localStorage.getItem('workers');
         if(arr){
             arr = JSON.parse(arr);
-            workers = [];
+            workers.length = 0;
             arr.forEach(item => workers.push(Worker.createElement(item.className, item)));
         }
 
