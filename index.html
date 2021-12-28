@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <script src="scripts.js" defer></script>
+    <title></title>
+</head>
+
+<body>
+  <header class="header center">
+    <h1>Нанять или уволить сотрудника</h1>
+  </header>
+  <div class="content center">
+    <form class="form" action="#" method="get" accept-charset="utf-8">
+      <input type="text" name="name" id="name" class="inp" value="" placeholder="Имя" required/>
+      <input type="text" name="surname" id="surname" class="inp" value="" placeholder="Фамилия" required/>
+      <input type="number" name="phone" id="tel" class="inp" value="" placeholder="Телефон" required/>
+      <input type="number" name="age" placeholder="Возраст" required id="age" class="inp" >
+      <select name="profession" id="classVariable" class="select">
+        <option value="position" selected>должность</option>
+        <option value="locksmith">Слесарь</option>
+        <option value="driver">Водитель</option>
+      </select>
+      <div class="locksmith worker-child d-none">
+        <input type="text" name="education" id="education" class="inp" value="" placeholder="Образование"/>
+        <input type="text" name="pastJob" id="pastJob" class="inp" value="" placeholder="Прошлое место работы?"/>
+      </div>
+      <div class="driver worker-child d-none">
+        <input type="text" name="experience" id="experience" class="inp" value="" placeholder="Стаж вождения в годах?"/>
+        <input type="text" name="categories" id="categories" class="inp" value="" placeholder="Какие категории открыты?"/>
+      </div>
+      <input type="submit" name="запись" id="save" value="Сохранить" />
+    </form>
+  </div>
+  
+  <div class="divTable center">
+  <table class="table" border="1" width="70%" cellpadding="5">
+  </table>
+</div>
+</body>
+
+</html>
